@@ -27,6 +27,14 @@ class personacontroller extends Controller
             return response()->json(['Mensaje'=> 'No encontrado'],404);
         }
         $persona->update($request->all());
-        return
+        return response($persona,200);
+    }
+    public function deletepersona(Request $request, $id){
+        $persona = persona::find($id);
+        if(is_null($persona)){
+            return response()->json(['Mensaje'=> 'No encontrado'],404);
+        }
+        $persona->delete();
+        return response()->json(['Mensaje'=>'Eliminado correctamente',200]);
     }
 }
